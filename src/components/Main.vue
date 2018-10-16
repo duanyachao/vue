@@ -1,53 +1,16 @@
 <template>
   <div class="home">
-    <h1>{{ msg }}</h1>
-    <ul>
-      <li v-for="article in articles" :key='article'>
-        <div class="m-img inl-block"><img v-bind:src="article.images.small"/></div>
-       <div class="m-content inl-block">
-          <div>{{article.title}}</div>
-        <div>年份：{{article.year}}</div>
-         <div>类型：{{article.subtype}}</div>
-       </div>
-      </li>
-    </ul>
+    <h1>刚才计数器显示的值为:{{ msg }}</h1>
   </div>
 </template>
 
 <script>
-// mounted 钩子函数  这里去请求豆瓣数据
-
 export default {
   name: 'home',
   data () {
     return {
-      msg: '电影列表',
-      articles: []
+      msg: this.$store.state.count
     }
-  },
-  created: function () {
-  //  这里mounted和created生命周期函数区别
-    this.$http
-      .jsonp(
-        'https://api.douban.com/v2/movie/top250?count=10',
-        {},
-        {
-          headers: {},
-          emulateJSON: true
-        }
-      )
-      .then(
-        function (response) {
-          // 这里是处理正确的回调
-          console.log(response)
-          this.articles = response.data.subjects
-          // this.articles = response.data["subjects"] 也可以
-        },
-        function (response) {
-          // 这里是处理错误的回调
-          console.log(response)
-        }
-      )
   }
 }
 </script>
