@@ -1,7 +1,9 @@
 
 <template>
   <div id="app">
+    <transition name="el-fade-in" mode="out-in">
       <router-view></router-view>
+    </transition>  
   </div>
 </template>
 
@@ -10,14 +12,9 @@ export default {
   name: 'App'
 }
 </script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  body{
+    margin: 0px;
+	  padding: 0px;
+  }
 </style>
